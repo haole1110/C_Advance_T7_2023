@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.php": "php",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iomanip": "cpp",
+        "*.tcc": "cpp"
     }
 }

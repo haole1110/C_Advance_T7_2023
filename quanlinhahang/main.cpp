@@ -2,6 +2,7 @@
 #include<vector>
 #include<string>
 #include <iomanip>
+#include <cstdlib>
 
 using namespace std;
 
@@ -29,17 +30,22 @@ typedef enum{
 //DishOnMenu Class -----------------------------------------------------------------------------
 class DishOnMenu{
     private:
+        int ID;
         string NAME;
         int PRICE;
     public:
         DishOnMenu(string name, int price);
         void setName(string name);
         void setPrice(int price);
+        int getId();
         string getName();
         int getPrice();
 };
 
 DishOnMenu::DishOnMenu(string name, int price){
+    static int id = 100;
+    id++;
+    this->ID = id;
     this->NAME = name;
     this->PRICE = price;
 }
@@ -60,25 +66,32 @@ int DishOnMenu::getPrice(){
     return this->PRICE;
 }
 
+int DishOnMenu::getId(){
+    return this->ID;
+}
+
 
 //DishOnTable Class -----------------------------------------------------------------------------
 
 class DishOnTable{
     private:
+        int ID;
         string NAME;
         int PRICE;
         int QUANTITY;
     public:
-        DishOnTable(string name, int price, int quantity);
+        DishOnTable(int id, string name, int price, int quantity);
         void setName(string name);
         void setPrice(int price);
         void setQuantity(int quantity);
+        int getId();
         string getName();
         int getPrice();
         int getQuantity();
 };
 
-DishOnTable::DishOnTable(string name, int price, int quantity){
+DishOnTable::DishOnTable(int id, string name, int price, int quantity){
+    this->ID = id;
     this->NAME = name;
     this->PRICE = price;
     this->QUANTITY = quantity;
@@ -106,6 +119,10 @@ int DishOnTable::getPrice(){
 
 int DishOnTable::getQuantity(){
     return this->QUANTITY;
+}
+
+int DishOnTable::getId(){
+    return this->ID;
 }
 
 
@@ -151,7 +168,28 @@ vector<DishOnTable>& Table::getDatabaseDishOnTable(){
 
 //---------------------------------FUNCTION-----------------------------------------
 
-void processTable(int count){
+void addADishToTable(Table& table){
+
+}
+
+void updateADishOnTable(Table& table){
+
+}
+
+void deleteADishOnTable(Table& table){
+
+}
+
+void printListDishesOnTable(Table& table){
+
+}
+
+void payDishesOnTable(Table& table){
+
+}
+
+void processTable(vector<Table>& dataTable, int count){
+    system("cls");
     int key = -1;
     cout << "BAN " << count <<"\n\n" ;
     cout << "          ________________________\n";
@@ -168,19 +206,19 @@ void processTable(int count){
     switch (key)
     {
     case ADD_STAFF:
-        
+        addADishToTable(dataTable[count]);
         break;
     case UPDATE_STAFF:
-        
+        updateADishOnTable(dataTable[count]);
         break;
     case DELETE_STAFF:
-        
+        deleteADishOnTable(dataTable[count]);
         break;
     case PRINT_STAFF:
-        
+        printListDishesOnTable(dataTable[count]);
         break;
     case PAY:
-        
+        payDishesOnTable(dataTable[count]);
         break;
     case RETURN_STAFF:
         return;
@@ -191,6 +229,7 @@ void processTable(int count){
 }
 
 void Staff(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable){
+    system("cls");
     int key = -1;
     int tempTable = -1;
     while (1){
@@ -203,7 +242,7 @@ void Staff(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable)
         cout << "          ____Danh sach ban____\n";
         cout << setw(15) << left << "  So ban";
         for (int i = 0; i < databaseTable.size(); i++){
-            cout << setw(columnWidth) << left << i+1;
+            cout << setw(columnWidth) << left << databaseTable[i].getNumbertable();
         }
         cout << endl;
         cout << setw(15) << left << "  Status";
@@ -214,13 +253,14 @@ void Staff(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable)
 
         cout << "  Nhap so ban: ";
         cin >> tempTable;
-        processTable(tempTable);
+        processTable(databaseTable, tempTable);
     }
 }
 
 
 //Manager---------------------------------------------------------------------------------
 void setTable(vector<Table>& databaseTable){
+    system("cls");
     int key;
 
     while (1){
@@ -234,6 +274,7 @@ void setTable(vector<Table>& databaseTable){
         switch (key)
         {
         case 1:
+            system("cls");
             int temp;
             cout << "Nhap so luong: ";
             cin >> temp;
@@ -247,14 +288,305 @@ void setTable(vector<Table>& databaseTable){
             return;
             break;
         default:
+            system("cls");
             cout << "Phim nay khong hop le\n";
             break;
         }
     }
 }
 
+void addADishToMenu(vector<DishOnMenu>& databaseDishOnMenu){
+    system("cls");
+    string name;
+    int price, key;
+    int columnWidth = 20;
+    cout << "MANAGER\n\n";
+    cout << "          Nhap ten: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "          Nhap gia: ";
+    cin >> price;
+    
+    DishOnMenu dishonmenu = {name, price};
+    databaseDishOnMenu.push_back(dishonmenu);
+    cout << "MANAGER\n\n";
+    cout << "          ____Them mon thanh cong____\n";
+    cout << setw(columnWidth) << left << "ID";
+    cout << setw(columnWidth) << left << "Ten";
+    cout << setw(columnWidth) << left << "Gia";
+    cout << endl;
+    cout << setw(columnWidth) << left << databaseDishOnMenu[databaseDishOnMenu.size() - 1].getId();
+    cout << setw(columnWidth) << left << databaseDishOnMenu[databaseDishOnMenu.size() - 1].getName();
+    cout << setw(columnWidth) << left << databaseDishOnMenu[databaseDishOnMenu.size() - 1].getPrice();
+    cout << endl << endl;
+
+    while (1){
+        cout << "          ________________________\n";
+        cout << "          1: Tiep tuc them\n";
+        cout << "          0: Quay lai\n\n";
+        cout << "          ________________________\n";
+        cout << "          Nhap lua chon: ";
+        cin >> key;
+        switch (key)
+        {
+        case 1:
+            addADishToMenu(databaseDishOnMenu);
+            return;
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            cout << "Phim nay khong hop le\n";
+            break;
+        }
+    }
+
+}
+
+void updateADish(vector<DishOnMenu>& databaseDishOnMenu){
+    system("cls");
+    int columnWidth = 20;
+    int i, id, key, price;
+    string name;
+    cout << "MANAGER\n\n";
+    for (int i = 0; i < databaseDishOnMenu.size(); i++){
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getId();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getName();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getPrice();
+        cout << endl;
+    }
+
+    cout << "Nhap ID mon an can chinh sua: ";
+    cin >> id;
+    for (i = 0; i < databaseDishOnMenu.size(); i++){
+        if (databaseDishOnMenu[i].getId() == id) break;
+    }
+    if (i == databaseDishOnMenu.size()){
+        cout << "Khong tim thay ID\n";
+        while (1){
+            cout << "Nhan 0 de quay lai: ";
+            cin >> key;
+            if (key == 0){return;}
+        }
+    }
+    while (1){
+        system("cls");
+        cout << "MANAGER\n\n";
+        cout << "          ________________________\n";
+        cout << "          1: Sua ten\n          2: Sua gia\n          0: Quay lai\n";
+        cout << "          ________________________\n";
+        cout << "          Nhap lua chon: ";
+        cin >> key;
+        switch (key)
+        {
+        case 1:
+            system("cls");
+            cout << "Nhap ten: ";
+            cin.ignore();
+            getline(cin, name);
+            databaseDishOnMenu[i].setName(name);
+            system("cls");
+            cout << "MANAGER\n\n";
+            cout << "          __________Sua mon thanh cong___________\n";
+            cout << setw(columnWidth) << left << "ID";
+            cout << setw(columnWidth) << left << "Ten";
+            cout << setw(columnWidth) << left << "Gia";
+            cout << endl;
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getId();
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getName();
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getPrice();
+            cout << endl << endl;
+            while (1){
+                cout << "          ________________________\n";
+                cout << "          1: Tiep tuc sua\n";
+                cout << "          0: Quay lai\n\n";
+                cout << "          ________________________\n";
+                cout << "          Nhap lua chon: ";
+                cin >> key;
+                switch (key)
+                {
+                case 1:
+                    updateADish(databaseDishOnMenu);
+                    return;
+                    break;
+                case 0:
+                    return;
+                    break;
+                default:
+                    cout << "Phim nay khong hop le\n";
+                    break;
+                }
+            }
+            return;
+            break;
+        case 2:
+            system("cls");
+            cout << "Nhap gia: ";
+            cin >> price;
+            databaseDishOnMenu[i].setPrice(price);
+            system("cls");
+            cout << "MANAGER\n\n";
+            cout << "          __________Sua mon thanh cong___________\n";
+            cout << setw(columnWidth) << left << "ID";
+            cout << setw(columnWidth) << left << "Ten";
+            cout << setw(columnWidth) << left << "Gia";
+            cout << endl;
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getId();
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getName();
+            cout << setw(columnWidth) << left << databaseDishOnMenu[i].getPrice();
+            cout << endl << endl;
+            while (1){
+                cout << "          ________________________\n";
+                cout << "          1: Tiep tuc sua\n";
+                cout << "          0: Quay lai\n\n";
+                cout << "          ________________________\n";
+                cout << "          Nhap lua chon: ";
+                cin >> key;
+                switch (key)
+                {
+                case 1:
+                    updateADish(databaseDishOnMenu);
+                    return;
+                    break;
+                case 0:
+                    return;
+                    break;
+                default:
+                    cout << "Phim nay khong hop le\n";
+                    break;
+                }
+            }
+            return;
+            break;
+        case 0:
+            updateADish(databaseDishOnMenu);
+            return;
+            break;
+        default:
+            cout << "Phim nay khong hop le\n";
+            break;
+        }
+    }
+}
+
+void deleteADishOnMenu(vector<DishOnMenu>& databaseDishOnMenu){
+    system("cls");
+    string name;
+    int price;
+    int id, i, idTemp;
+    int columnWidth = 20;
+    int key;
+    cout << "MANAGER\n\n";
+    for (int i = 0; i < databaseDishOnMenu.size(); i++){
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getId();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getName();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getPrice();
+        cout << endl;
+    }
+
+    cout << "Nhap ID mon an can xoa: ";
+    cin >> id;
+    for (i = 0; i < databaseDishOnMenu.size(); i++){
+        if (databaseDishOnMenu[i].getId() == id) break;
+    }
+    if (i == databaseDishOnMenu.size()){
+        cout << "Khong tim thay ID\n";
+        while (1){
+            cout << "Nhan 0 de quay lai: ";
+            cin >> key;
+            if (key == 0){return;}
+        }
+    }
+    while (1){
+        system("cls");
+        cout << "MANAGER\n\n";
+        cout << "          Ban co chac chan khong?\n";
+        cout << "          ________________________\n";
+        cout << "          1: Co\n          2: Khong\n";
+        cout << "          ________________________\n";
+        cout << "          Nhap lua chon: ";
+        cin >> key;
+        switch (key)
+        {
+        case 1:
+            idTemp = databaseDishOnMenu[i].getId();
+            name = databaseDishOnMenu[i].getName();
+            price = databaseDishOnMenu[i].getPrice();
+            databaseDishOnMenu.erase(databaseDishOnMenu.begin() + i);
+            system("cls");
+            cout << "MANAGER\n\n";
+            cout << "          __________Xoa thanh cong___________\n";
+            cout << setw(columnWidth) << left << "ID";
+            cout << setw(columnWidth) << left << "Ten";
+            cout << setw(columnWidth) << left << "Gia";
+            cout << endl;
+            cout << setw(columnWidth) << left << id;
+            cout << setw(columnWidth) << left << name;
+            cout << setw(columnWidth) << left << price;
+            cout << endl << endl;
+            while (1){
+                cout << "          ________________________\n";
+                cout << "          1: Tiep tuc xoa\n";
+                cout << "          0: Quay lai\n\n";
+                cout << "          ________________________\n";
+                cout << "          Nhap lua chon: ";
+                cin >> key;
+                switch (key)
+                {
+                case 1:
+                    deleteADishOnMenu(databaseDishOnMenu);
+                    return;
+                    break;
+                case 0:
+                    return;
+                    break;
+                default:
+                    cout << "Phim nay khong hop le\n";
+                    break;
+                }
+            }
+            return;
+            break;
+        case 2:
+            deleteADishOnMenu(databaseDishOnMenu);
+            return;
+            break;
+        default:
+            cout << "Phim nay khong hop le\n";
+            break;
+        }
+    }
+
+}
+
+void printListDishOnMenu(vector<DishOnMenu> databaseDishOnMenu){
+    system("cls");
+    int columnWidth = 20;
+    int key;
+    cout << "MANAGER\n\n";
+    cout << "          ______________MENU______________\n";
+    cout << setw(columnWidth) << left << "STT";
+    cout << setw(columnWidth) << left << "ID";
+    cout << setw(columnWidth) << left << "Ten";
+    cout << setw(columnWidth) << left << "Gia";
+    cout << endl;
+    for (int i = 0; i < databaseDishOnMenu.size(); i++){
+        cout << setw(columnWidth) << left << i + 1;
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getId();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getName();
+        cout << setw(columnWidth) << left << databaseDishOnMenu[i].getPrice();
+        cout << endl;
+    }
+    while (1){
+        cout << "Quay lai (1/0): ";
+        cin >> key;
+        if (key == 1) return; 
+    }
+}
 
 void Manager(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable){
+    system("cls");
     while(1){
         cout << "MANAGER\n\n";
         cout << "          ________________________\n";
@@ -275,16 +607,16 @@ void Manager(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTabl
             setTable(databaseTable);
             break;
         case ADD:
-            
+            addADishToMenu(databaseDishOnMenu);
             break;
         case UPDATE:
-            
+            updateADish(databaseDishOnMenu);
             break;
         case DELETE:
-            
+            deleteADishOnMenu(databaseDishOnMenu);
             break;
         case PRINT:
-            
+            printListDishOnMenu(databaseDishOnMenu);
             break;
         case RETURN:
             return;
@@ -297,6 +629,7 @@ void Manager(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTabl
 }
 
 int main(){
+    system("cls");
     vector<DishOnMenu> databaseMenu;
     vector<Table> databaseTable;
 
