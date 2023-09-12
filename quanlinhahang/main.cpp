@@ -168,23 +168,47 @@ vector<DishOnTable>& Table::getDatabaseDishOnTable(){
 
 //---------------------------------FUNCTION-----------------------------------------
 
-void addADishToTable(Table& table){
+void addADishToTable(vector<Table>& dataTable, int count){
 
 }
 
-void updateADishOnTable(Table& table){
+void updateADishOnTable(vector<Table>& dataTable, int count){
 
 }
 
-void deleteADishOnTable(Table& table){
+void deleteADishOnTable(vector<Table>& dataTable, int count){
 
 }
 
-void printListDishesOnTable(Table& table){
-
+void printListDishesOnTable(vector<Table>& dataTable, int count){
+    system("cls");
+    vector<DishOnTable> dishontable = dataTable[count].getDatabaseDishOnTable();
+    int columnWidth = 20;
+    int key;
+    cout << "BAN " << count + 1 <<"\n\n" ;
+    cout << "          ______________Danh sach mon an______________\n";
+    cout << setw(columnWidth) << left << "STT";
+    cout << setw(columnWidth) << left << "ID";
+    cout << setw(columnWidth) << left << "Ten";
+    cout << setw(columnWidth) << left << "Gia";
+    cout << setw(columnWidth) << left << "So luong";
+    cout << endl;
+    for (int i = 0; i < dishontable.size(); i++){
+        cout << setw(columnWidth) << left << i + 1;
+        cout << setw(columnWidth) << left << dishontable[i].getId();
+        cout << setw(columnWidth) << left << dishontable[i].getName();
+        cout << setw(columnWidth) << left << dishontable[i].getPrice();
+        cout << setw(columnWidth) << left << dishontable[i].getQuantity();
+        cout << endl;
+    }
+    while (1){
+        cout << "Quay lai (1/0): ";
+        cin >> key;
+        if (key == 1) return; 
+    }
 }
 
-void payDishesOnTable(Table& table){
+void payDishesOnTable(vector<Table>& dataTable, int count){
 
 }
 
@@ -206,19 +230,19 @@ void processTable(vector<Table>& dataTable, int count){
     switch (key)
     {
     case ADD_STAFF:
-        addADishToTable(dataTable[count]);
+        addADishToTable(dataTable, count - 1);
         break;
     case UPDATE_STAFF:
-        updateADishOnTable(dataTable[count]);
+        updateADishOnTable(dataTable, count - 1);
         break;
     case DELETE_STAFF:
-        deleteADishOnTable(dataTable[count]);
+        deleteADishOnTable(dataTable, count - 1);
         break;
     case PRINT_STAFF:
-        printListDishesOnTable(dataTable[count]);
+        printListDishesOnTable(dataTable, count - 1);
         break;
     case PAY:
-        payDishesOnTable(dataTable[count]);
+        payDishesOnTable(dataTable, count - 1);
         break;
     case RETURN_STAFF:
         return;
