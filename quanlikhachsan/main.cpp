@@ -25,17 +25,24 @@ typedef enum{
     OUT
 }typeStatus;
 
+typedef enum{
+    JANITOR,
+    RECEPTIONIST,
+    LAUNDRY_STAFF,
+    LAUNGGAGE_STAFF,
+    GRADENER
+}JobPosition;
 //---------------------------------STRUCT------------------------------------
 typedef struct{
-    uint8_t second;
-    uint8_t minute;
-    uint8_t hour;
+    int second;
+    int minute;
+    int hour;
 }typeTime;
 
 typedef struct {
-    uint8_t day;
-    uint8_t month;
-    uint8_t year;
+    int day;
+    int month;
+    int year;
 }typeDate;
 
 
@@ -51,9 +58,6 @@ typedef struct{
     typeStatus status;
 }Schedule;
 
-typedef struct{
-
-}JobPosition;
 
 //---------------------------------CLASS------------------------------------
 class Room{
@@ -130,12 +134,44 @@ public:
 
 class Employee{
     private:
+        int id;
         string name;
         string numberPhone;
         JobPosition position;
-        Schedule schedule;
+        typeTime timeStartWorking;
+        typeTime timeEndWorking;
+        typeStatus status;
     public:
-        Employee(string nameEmployee, string phoneNumberEmployee, JobPosition positionEmployee, Schedule scheduleEmployee);
+        Employee(string nameEmployee, string phoneNumberEmployee, JobPosition positionEmployee, typeTime timeStartWorking, typeTime timeEndWorking){
+            static int id = 100;
+            id++;
+            this->id = id;
+            this->name = nameEmployee;
+            this->numberPhone = phoneNumberEmployee;
+            this->position = positionEmployee;
+            this->timeStartWorking = timeStartWorking;
+            this->timeEndWorking = timeEndWorking;
+            this->status = OUT;
+        }
+
+        int getID(){
+            return this->id;
+        }
+        string getName(){
+           return this->name; 
+        }
+        string getNumberPhone(){
+            return this->numberPhone;
+        }
+        JobPosition getPosition(){
+            return this->position;
+        }
+        typeTime getTimeStartWorking(){
+            return this->timeStartWorking;
+        }
+        typeTime getTimeEndWorking(){
+            return this->timeEndWorking;
+        }
 };
 
 class EmployeeManager{
@@ -150,8 +186,37 @@ class EmployeeManager{
 
 //-----------------------------DECLARE FUNCTION--------------------------------
 void manageCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer);
+void printListEmployee(vector<Employee> databaseEmployee);
 
 //---------------------------------FUNCTION------------------------------------
+string translatePosition(JobPosition job){
+    switch (job)
+    {
+    case JANITOR:
+        /* code */
+        return "JANITOR";
+        break;
+    case RECEPTIONIST:
+        /* code */
+        return "RECEPTIONIST";
+        break;
+    case LAUNDRY_STAFF:
+        /* code */
+        return "LAUNDRY_STAFF";
+        break;
+    case LAUNGGAGE_STAFF:
+        /* code */
+        return "LAUNGGAGE_STAFF";
+        break;
+    case GRADENER:
+        /* code */
+        return "GRADENER";
+        break;
+    default:
+        break;
+    }
+    return "";
+}
 void editInfoCustomer(vector<Room>& databaseRoom, vector<Customer> databaseCustomer){
     system("cls");
     int stt;
@@ -216,6 +281,7 @@ void editInfoCustomer(vector<Room>& databaseRoom, vector<Customer> databaseCusto
 }
 
 void deleteInfoCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
+
     system("cls");
     int stt, i;
     int key;
@@ -253,6 +319,187 @@ void deleteInfoCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCu
     }
 
     
+}
+
+void updateAEmployee(vector<Employee>& databaseEmployee){
+
+}
+
+void deleteAEmployee(vector<Employee>& databaseEmployee){
+    system("cls");
+    int id, i;
+    int columnWidth = 20;
+    int key;
+    
+    int key = -1;
+    cout << "----------------Danh sach nhan vien---------------------\n\n";
+    cout << setw(columnWidth) << left << "ID";
+    cout << setw(columnWidth) << left << "Ho va ten";
+    cout << setw(columnWidth) << left << "So dien thoai";
+    cout << setw(columnWidth) << left << "Vi tri";
+    cout << setw(columnWidth) << left << "Thoi gian bat dau";
+    cout << setw(columnWidth) << left << "Thoi gian ket thuc";
+    cout << endl;
+    for (i = 0; i < databaseEmployee.size(); i++){
+        cout << setw(columnWidth) << left << databaseEmployee[i].getID();
+        cout << setw(columnWidth) << left << databaseEmployee[i].getName();
+        cout << setw(columnWidth) << left << databaseEmployee[i].getNumberPhone();
+        cout << setw(columnWidth) << left << translatePosition(databaseEmployee[i].getPosition());
+        cout << databaseEmployee[i].getTimeStartWorking().hour << ":" << databaseEmployee[i].getTimeStartWorking().minute << ":" << setw(columnWidth) << left << databaseEmployee[i].getTimeStartWorking().second;
+        cout << databaseEmployee[i].getTimeEndWorking().hour << ":" << databaseEmployee[i].getTimeEndWorking().minute << ":" << databaseEmployee[i].getTimeEndWorking().second;
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Nhap ID nhan vien can xoa: ";
+    cin >> id;
+    for (i = 0; i < databaseEmployee.size(); i++){
+        if (databaseEmployee[i].getID() == id) break;
+    }
+    if (i == databaseEmployee.size()){
+        cout << "Khong tim thay ID\n";
+        while (1){
+            cout << "Nhan 0 de quay lai: ";
+            cin >> key;
+            if (key == 0){return;}
+        }
+    }
+
+    while (1){
+        system("cls");
+        cout << "          Ban co chac chan khong?\n";
+        cout << "          ________________________\n";
+        cout << "          1: Co\n          2: Khong\n";
+        cout << "          ________________________\n";
+        cout << "          Nhap lua chon: ";
+        cin >> key;
+        switch (key)
+        {
+        case 1:
+            databaseEmployee.erase(databaseEmployee.begin() + i);
+            system("cls");
+            cout << "          __________Xoa thanh cong___________\n";
+            while (1){
+                cout << "          ________________________\n";
+                cout << "          1: Tiep tuc xoa\n";
+                cout << "          0: Quay lai\n\n";
+                cout << "          ________________________\n";
+                cout << "          Nhap lua chon: ";
+                cin >> key;
+                switch (key)
+                {
+                case 1:
+                    deleteAEmployee(databaseEmployee);
+                    return;
+                    break;
+                case 0:
+                    return;
+                    break;
+                default:
+                    cout << "Phim nay khong hop le\n";
+                    break;
+                }
+            }
+            return;
+            break;
+        case 2:
+            deleteAEmployee(databaseEmployee);
+            return;
+            break;
+        default:
+            cout << "Phim nay khong hop le\n";
+            break;
+        }
+    }
+}
+
+void addAEmployee(vector<Employee>& databaseEmployee){
+    system("cls");
+    cout << "----------------Them nhan vien---------------------\n\n";
+    cout << "Nhap ten: ";
+    string name;
+    cin.ignore();
+    getline(cin, name);
+    cout << "Nhap sdt: ";
+    string sdt;
+    //cin.ignore();
+    getline(cin, sdt);
+    cout << "Chon vi tri:\n";
+    cout << "1.JANITOR\n2.RECEPTIONIST\n3.LAUNDRY_STAFF\n4.LAUNGGAGE_STAFF\n5.GRADENER\n";
+    int temp;
+    JobPosition position;
+    cin >> temp;
+    switch (temp)
+    {
+    case 1:
+        position = JANITOR;
+        break;
+    case 2:
+        position = RECEPTIONIST;
+        break;
+    case 3:
+        position = LAUNDRY_STAFF;
+        break;
+    case 4:
+        position = LAUNGGAGE_STAFF;
+        break;
+    case 5:
+        position = GRADENER;
+        break;
+    default:
+        break;
+    }
+    typeTime timeStart;
+    cout << "Gio bat dau: ";
+    cin >> timeStart.hour;
+    cout << "Phut bat dau: ";
+    cin >> timeStart.minute;
+    timeStart.second = 0;
+
+    typeTime timeEnd;
+    cout << "Gio ket thuc: ";
+    cin >> timeEnd.hour;
+    cout << "Phut ket thuc: ";
+    cin >> timeEnd.minute;
+    timeEnd.second = 0;
+
+    Employee tempEmployee = {name, sdt, position, timeStart, timeEnd};
+    databaseEmployee.push_back(tempEmployee);
+
+    cout << "Them thanh cong!!!\n";
+    cout << "Nhap phim bat ky de quay lai: ";
+    string temp4;
+    cin >> temp4;
+    return;
+}
+
+void printListEmployee(vector<Employee> databaseEmployee){
+    system("cls");
+    int i;
+    int columnWidth = 20;
+    int key = -1;
+    cout << "----------------Danh sach nhan vien---------------------\n\n";
+    cout << setw(columnWidth) << left << "ID";
+    cout << setw(columnWidth) << left << "Ho va ten";
+    cout << setw(columnWidth) << left << "So dien thoai";
+    cout << setw(columnWidth) << left << "Vi tri";
+    cout << setw(columnWidth) << left << "Thoi gian bat dau";
+    cout << setw(columnWidth) << left << "Thoi gian ket thuc";
+    cout << endl;
+    for (i = 0; i < databaseEmployee.size(); i++){
+        cout << setw(columnWidth) << left << databaseEmployee[i].getID();
+        cout << setw(columnWidth) << left << databaseEmployee[i].getName();
+        cout << setw(columnWidth) << left << databaseEmployee[i].getNumberPhone();
+        cout << setw(columnWidth) << left << translatePosition(databaseEmployee[i].getPosition());
+        cout << databaseEmployee[i].getTimeStartWorking().hour << ":" << databaseEmployee[i].getTimeStartWorking().minute << ":" << setw(columnWidth) << left << databaseEmployee[i].getTimeStartWorking().second;
+        cout << databaseEmployee[i].getTimeEndWorking().hour << ":" << databaseEmployee[i].getTimeEndWorking().minute << ":" << databaseEmployee[i].getTimeEndWorking().second;
+        cout << endl;
+    }
+    cout << endl;
+    cout << "Nhap phim bat ky de quay lai: ";
+    string temp;
+    cin >> temp;
+    return;
 }
 //Main Function---------------------------------------------------------------
 void bookRoom(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
@@ -439,12 +686,67 @@ void manageCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustom
     }
 }
 
+void manageEmployee(vector<Employee>& databaseEmployee){
+    system("cls");
+    int i;
+    int columnWidth = 20;
+    int key = -1;
+    cout << "----------------Quan li nhan vien---------------------\n\n";
+
+    cout << "1:Chinh sua nhan vien\n";
+    cout << "2:Xoa nhan vien\n";
+    cout << "3:Them nhan vien\n";
+    cout << "4:In danh sach nhan vien\n";
+    cout << "0:Quay lai\n\n";
+    while (1){
+        cout << "Nhap lua chon: ";
+        cin >> key;
+        switch (key)
+        {
+        case 1:
+            updateAEmployee(databaseEmployee);
+            return;
+            break;
+        case 2:
+            deleteAEmployee(databaseEmployee);
+            return;
+            break;
+        case 3:
+            addAEmployee(databaseEmployee);
+            return;
+            break;
+        case 4:
+            printListEmployee(databaseEmployee);
+            return;
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+//-------------------------------MAIN--------------------------------------------
 int main(){
     system("cls");
     vector<Room> databaseRoom;
     vector<Customer> databaseCustomer;
-
+    vector<Employee> databaseEmployee;
     int key = 0;
+
+    typeTime temp1;
+    temp1.hour = 7;
+    temp1.minute = 30;
+    temp1.second = 30;
+    Employee temp = {"Le Duy Hao", "0327131068", JANITOR, temp1, temp1};
+    databaseEmployee.push_back(temp);
 
     while(1){
         cout << "----------------WELCOME---------------------\n";
@@ -461,7 +763,7 @@ int main(){
                 manageCustomer(databaseRoom, databaseCustomer);
                 break;
             case STAFF_MANAGE:
-                
+                manageEmployee(databaseEmployee);
                 break;
             case PAYMENT:
                 
