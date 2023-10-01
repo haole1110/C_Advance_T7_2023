@@ -1,3 +1,10 @@
+/*
+* File: quanlikhachsan.cpp
+* Author: Le Duy Hao
+* Date: 1/09/2023
+* Description: This is a file which implements the methods of the classes and function in the program.
+*/
+
 #include "quanlisinhvien.h"
 
 //--------------------------------CLASS--------------------------------
@@ -83,6 +90,14 @@ double SinhVien::getDiemTb(){
 
 //--------------------------FUNCTION------------------------------------
 
+/*
+* Function: addAStudent
+* Description: This function performs the functionality of adding a student information.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void addAStudent(vector<SinhVien>& databaseSV){
     string name;
     int tuoi;
@@ -138,6 +153,14 @@ void addAStudent(vector<SinhVien>& databaseSV){
     }
 }
 
+/*
+* Function: updateInfoStudent
+* Description: This function performs the functionality of modifying a student information.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void updateInfoStudent(vector<SinhVien>& databaseSV){
     int id;
     string name;
@@ -226,6 +249,14 @@ void updateInfoStudent(vector<SinhVien>& databaseSV){
     }
 }
 
+/*
+* Function: eraseAStudent
+* Description: This function performs the functionality of deleting a student information.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void eraseAStudent(vector<SinhVien>& databaseSV){
     int id;
     unsigned int i;
@@ -293,6 +324,14 @@ void eraseAStudent(vector<SinhVien>& databaseSV){
     }
 }
 
+/*
+* Function: eraseAStudent
+* Description: This function helps looking up a student information by name.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void lookupAStudent(vector<SinhVien> databaseSV){
     string name;
     unsigned int i;
@@ -351,6 +390,14 @@ void lookupAStudent(vector<SinhVien> databaseSV){
 
 }
 
+/*
+* Function: sortDiemTb
+* Description: This function helps sorting list student informations by diemtb.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void sortDiemTb(vector<SinhVien>& databaseSV){
     for (unsigned int i = 0; i < databaseSV.size(); i++){
         for (unsigned int j = i + 1; j < databaseSV.size(); j++){
@@ -363,6 +410,14 @@ void sortDiemTb(vector<SinhVien>& databaseSV){
     cout << "---------SORT BY DIEM TB SUCCESSFULLY---------------\n";
 }
 
+/*
+* Function: sortName
+* Description: This function helps sorting list student informations by name.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void sortName(vector<SinhVien>& databaseSV){
     for (unsigned int i = 0; i < databaseSV.size(); i++){
         for (unsigned int j = i + 1; j < databaseSV.size(); j++){
@@ -375,6 +430,14 @@ void sortName(vector<SinhVien>& databaseSV){
     cout << "---------SORT BY NAME SUCCESSFULLY---------------\n";
 }
 
+/*
+* Function: printList
+* Description: This function shows list student informations.
+* Input:
+*   databaseSV - a vector sinhvien class
+* Output:
+*   None
+*/
 void printList(vector<SinhVien> databaseSV){
     int columnWidth = 20;
 

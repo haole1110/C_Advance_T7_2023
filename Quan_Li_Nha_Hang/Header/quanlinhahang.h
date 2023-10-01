@@ -10,6 +10,8 @@
 using namespace std;
 
 //---------------------------------ENUM---------------------------------------------
+
+//Main manager funcitons in the system
 typedef enum{
     RETURN      = 0,
     SETTABLE    = 1,
@@ -19,6 +21,7 @@ typedef enum{
     PRINT       = 5
 }typeModeManager;
 
+//Main staff funcitons in the system
 typedef enum{
     RETURN_STAFF    = 0,
     ADD_STAFF       = 1,

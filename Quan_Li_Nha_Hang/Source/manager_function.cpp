@@ -1,5 +1,23 @@
+/*
+* File: manager_function.cpp
+* Author: Le Duy Hao
+* Date: 20/09/2023
+* Description: This is a file which include main manager functions in the system, include: setTable,
+*              addADishToMenu, updateADish, deleteADishOnMenu, printListDishOnMenu.
+*/
+
+
 #include "manager_function.h"
 
+
+/*
+* Function: setTable
+* Description: This function helps manager set quantity table for the restaurant
+* Input:
+*   databaseTable - a vector table class
+* Output:
+*   None
+*/
 void setTable(vector<Table>& databaseTable){
     system("cls");
     int key;
@@ -36,6 +54,14 @@ void setTable(vector<Table>& databaseTable){
     }
 }
 
+/*
+* Function: addADishToMenu
+* Description: This function helps manager add a dish to menu of restaurant.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+* Output:
+*   None
+*/
 void addADishToMenu(vector<DishOnMenu>& databaseDishOnMenu){
     system("cls");
     string name;
@@ -85,6 +111,14 @@ void addADishToMenu(vector<DishOnMenu>& databaseDishOnMenu){
 
 }
 
+/*
+* Function: updateADish
+* Description: This function helps manager modify a dish information on menu.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+* Output:
+*   None
+*/
 void updateADish(vector<DishOnMenu>& databaseDishOnMenu){
     system("cls");
     int columnWidth = 20;
@@ -212,6 +246,15 @@ void updateADish(vector<DishOnMenu>& databaseDishOnMenu){
     }
 }
 
+
+/*
+* Function: deleteADishOnMenu
+* Description: This function helps manager delete a dish information on menu.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+* Output:
+*   None
+*/
 void deleteADishOnMenu(vector<DishOnMenu>& databaseDishOnMenu){
     system("cls");
     string name;
@@ -303,6 +346,14 @@ void deleteADishOnMenu(vector<DishOnMenu>& databaseDishOnMenu){
 
 }
 
+/*
+* Function: printListDishOnMenu
+* Description: This function show list dishes on menu for manager.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+* Output:
+*   None
+*/
 void printListDishOnMenu(vector<DishOnMenu> databaseDishOnMenu){
     system("cls");
     int columnWidth = 20;
@@ -328,6 +379,15 @@ void printListDishOnMenu(vector<DishOnMenu> databaseDishOnMenu){
     }
 }
 
+/*
+* Function: Manager
+* Description: This function helps manager choose operater of manager in the system.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+*   databaseTable - a vector table class
+* Output:
+*   None
+*/
 void Manager(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable){
     system("cls");
     while(1){

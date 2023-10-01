@@ -1,3 +1,11 @@
+/*
+* File: quanlinhahang.cpp
+* Author: Le Duy Hao
+* Date: 20/09/2023
+* Description: This is a file which implements the methods of the classes in the program.
+*/
+
+
 #include "quanlinhahang.h"
 
 //---------------------------------CLASS---------------------------------------------

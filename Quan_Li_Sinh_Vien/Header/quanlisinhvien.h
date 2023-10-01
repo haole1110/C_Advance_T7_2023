@@ -10,6 +10,7 @@ using namespace std;
 
 //---------------------------------ENUM-----------------------------------
 
+//Main funcitons in the system
 typedef enum{
     ADD = 1,
     UPDATE = 2,
@@ -35,7 +36,7 @@ typedef enum{
 
 //--------------------------------CLASS--------------------------------
 
-static int id = 0;
+static int id = 0; //Tang trong suot chuong trinh
 
 class SinhVien{
     private:

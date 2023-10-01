@@ -1,5 +1,24 @@
+/*
+* File: staff_function.cpp
+* Author: Le Duy Hao
+* Date: 20/09/2023
+* Description: This is a file which include main staff functions in the system, include: addADishToTable,
+*              updateADishOnTable, deleteADishOnTable, printListDishesOnTable, payDishesOnTable.
+*/
+
 #include "staff_function.h"
 
+
+/*
+* Function: addADishToTable
+* Description: This function helps staff add a dish to table of restaurant.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void addADishToTable(vector<DishOnMenu> databaseDishOnMenu,vector<Table>& dataTable, int count){
     system("cls");
     string name;
@@ -76,6 +95,15 @@ void addADishToTable(vector<DishOnMenu> databaseDishOnMenu,vector<Table>& dataTa
     }
 }
 
+/*
+* Function: updateADishOnTable
+* Description: This function helps staff update a dish information on table of restaurant.
+* Input:
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void updateADishOnTable(vector<Table>& dataTable, int count){
     system("cls");
     unsigned int i;
@@ -155,6 +183,15 @@ void updateADishOnTable(vector<Table>& dataTable, int count){
 
 }
 
+/*
+* Function: deleteADishOnTable
+* Description: This function helps staff delete a dish information on table of restaurant.
+* Input:
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void deleteADishOnTable(vector<Table>& dataTable, int count){
     system("cls");
     unsigned int i;
@@ -258,6 +295,15 @@ void deleteADishOnTable(vector<Table>& dataTable, int count){
     }
 }
 
+/*
+* Function: printListDishesOnTable
+* Description: This function shows list dishes on table for staff.
+* Input:
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void printListDishesOnTable(vector<Table>& dataTable, int count){
     system("cls");
     vector<DishOnTable> dishontable = dataTable[count].getDatabaseDishOnTable();
@@ -286,6 +332,15 @@ void printListDishesOnTable(vector<Table>& dataTable, int count){
     }
 }
 
+/*
+* Function: payDishesOnTable
+* Description: This function pays dishes on table for customer.
+* Input:
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void payDishesOnTable(vector<Table>& dataTable, int count){
     system("cls");
     int id, i, sumPrice = 0;
@@ -336,6 +391,16 @@ void payDishesOnTable(vector<Table>& dataTable, int count){
     }
 }
 
+/*
+* Function: processTable
+* Description: This function helps staff choose operater of staff in the system.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+*   dataTable - a vector table class
+*   count - an integer number
+* Output:
+*   None
+*/
 void processTable(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& dataTable, int count){
     system("cls");
     if  ((count > dataTable.size()) || (count < 1)){
@@ -380,6 +445,15 @@ void processTable(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& dataTab
     }
 }
 
+/*
+* Function: Staff
+* Description: This function helps staff choose number table to perform functions.
+* Input:
+*   databaseDishOnMenu - a vector dish on menu class
+*   dataTable - a vector table class
+* Output:
+*   None
+*/
 void Staff(vector<DishOnMenu>& databaseDishOnMenu, vector<Table>& databaseTable){
     system("cls");
     int key = -1;

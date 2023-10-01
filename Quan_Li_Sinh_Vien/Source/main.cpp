@@ -2,6 +2,7 @@
 
 //--------------------------MAIN----------------------------------------
 int main(){
+    //Storage room informations in the hotel
     vector<SinhVien> databaseSV;
 
     int key = 0;

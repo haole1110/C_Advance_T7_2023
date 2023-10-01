@@ -5,7 +5,9 @@
 
 int main(){
     system("cls");
+    //Storage dish on menu informations in the hotel
     vector<DishOnMenu> databaseMenu;
+    //Storage table informations in the hotel
     vector<Table> databaseTable;
 
     do{

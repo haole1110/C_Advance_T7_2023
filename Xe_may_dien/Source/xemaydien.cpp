@@ -1,9 +1,15 @@
+/*
+* File: xemaydien.cpp
+* Author: Le Duy Hao
+* Date: 01/10/2023
+* Description: This is a file which implements the methods of the classes and function the program.
+*/
 #include "xemaydien.h"
 
 mutex mtx;
 condition_variable condVar;
 
-
+//Initial value when starting the bike
 string xiNhan = "-------";
 string quat = "-------";
 string vanToc = "-------";
@@ -74,6 +80,14 @@ int Battery::convertCapacityToPercentage(){
 
 
 //--------------------------------------------FUNCTION---------------------------------
+/*
+* Function: getInputFromKeyboard
+* Description: This function get character input from keyboard and storage in inputKeyboard variable.
+* Input:
+    None
+* Output:
+*   None
+*/
 void getInputFromKeyboard(){
     while (1){
         char ch = _getch();
@@ -110,6 +124,14 @@ void getInputFromKeyboard(){
     }
 }
 
+/*
+* Function: controlStateBike
+* Description: This function control state bike.
+* Input:
+    None
+* Output:
+*   None
+*/
 void controlStateBike() {
     // this_thread::sleep_for(chrono::seconds(2)); 
     while (1){
@@ -144,6 +166,14 @@ void controlStateBike() {
     }
 }
 
+/*
+* Function: controlStateBike
+* Description: This function control turn signal.
+* Input:
+    None
+* Output:
+*   None
+*/
 void controlTurnSignal() {
     while (1){
         this_thread::sleep_for(chrono::milliseconds(100)); 
@@ -163,6 +193,14 @@ void controlTurnSignal() {
 
 }
 
+/*
+* Function: controlStateBike
+* Description: This function control fan.
+* Input:
+    None
+* Output:
+*   None
+*/
 void controlFan() {
     while (1){
         this_thread::sleep_for(chrono::milliseconds(100)); 
@@ -178,6 +216,14 @@ void controlFan() {
 
 }
 
+/*
+* Function: controlStateBike
+* Description: This function speed bike.
+* Input:
+    None
+* Output:
+*   None
+*/
 void controlSpeedBike() {
     while (1){
         this_thread::sleep_for(chrono::milliseconds(100)); 
@@ -200,6 +246,14 @@ void controlSpeedBike() {
 
 }
 
+/*
+* Function: controlStateBike
+* Description: This function control battery.
+* Input:
+    None
+* Output:
+*   None
+*/
 void controlBattery() {
     while (1){
         this_thread::sleep_for(chrono::seconds(5)); 
@@ -217,6 +271,14 @@ void controlBattery() {
 
 }
 
+/*
+* Function: controlStateBike
+* Description: This function display screen for user
+* Input:
+    None
+* Output:
+*   None
+*/
 void displayScreen(){
     while (1){
         this_thread::sleep_for(chrono::milliseconds(100)); 

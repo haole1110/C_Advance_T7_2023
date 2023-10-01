@@ -15,17 +15,17 @@ extern mutex mtx;
 extern condition_variable condVar;
 
 
-extern string xiNhan;
-extern string quat;
-extern string vanToc;
-extern string nhietDoPin;
-extern string phanTramPin;
-extern string inputKeyboard;
+extern string xiNhan;               //show signal bike information 
+extern string quat;                 //show fan information 
+extern string vanToc;               //show speed information 
+extern string nhietDoPin;           //show temperature battery information 
+extern string phanTramPin;          //show capacity battery information 
+extern string inputKeyboard;        //get input from keyboard
 
-extern bool trangThaiXe;
-extern bool stateInput;
+extern bool trangThaiXe;            //state bike
+extern bool stateInput;             //if got character input from keyboard, = 0; else = 1
 
-extern int speedBike;
+extern int speedBike;               
 
 class Battery {
 private:
