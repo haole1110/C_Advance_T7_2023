@@ -1,12 +1,19 @@
 #include "main_function.h"
 
 int main(){
+    //Storage room informations in the hotel
     vector<Room> databaseRoom;
+    //Storage customer informations in the hotel
     vector<Customer> databaseCustomer;
+    //Storage employee informations in the hotel
     vector<Employee> databaseEmployee;
+    //Storage security informations in the hotel
     SecurityManagement securityManagement;
+    //Storage service informations in the hotel
     Service service;
+    //Storage feedback informations in the hotel
     vector<Feedback> databaseFeedback;
+    //Storage pay history informations in the hotel
     vector<PayHistory> databasePayHistory;
     int key = 0;
 

@@ -1,5 +1,26 @@
+/*
+* File: main_function.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which include main functions in the system, include: bookRoom,
+*              manageCustomer, manageEmployee, manageService, managePayment, statisticHotel,
+*              securityManage, manageFeedback.
+*/
+
+
 #include "main_function.h"
 
+
+/*
+* Function: bookRoom
+* Description: This function performs the room reservation functionality in the system, 
+*              which includes two functions: setting the number of rooms and proceeding with the reservation.
+* Input:
+*   databaseRoom - a vector room class
+*   databaseCustomer - a vector customer class
+* Output:
+*   None
+*/
 void bookRoom(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
     system("cls");
     int i;
@@ -137,6 +158,19 @@ void bookRoom(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
     }
 }
 
+/*
+* Function: manageCustomer
+* Description: This function verifies the user's access rights to the customer management feature (management 
+*              and reception). If the access is granted successfully, it allows the user to perform functions 
+*              such as editing and deleting customer information. 
+* Input:
+*   databaseRoom - a vector room class
+*   databaseCustomer - a vector customer class
+*   securityManagement  - a object of SecurityManagement class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void manageCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer, SecurityManagement securityManagement, vector<Employee> databaseEmployee){
     system("cls");
     int key1;
@@ -173,6 +207,8 @@ void manageCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustom
             if (key1 == 0){return;}
         }
     }
+
+    //Thuc hien cac chuc nang trong quan li khach hang
     int i;
     int columnWidth = 20;
     int key = -1;
@@ -220,6 +256,16 @@ void manageCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustom
     }
 }
 
+/*
+* Function: manageEmployee
+* Description: This function verifies the user's access rights to the employee management feature, 
+*              allowing login with either managerial or staff privileges, each having different functionalities. 
+* Input:
+*   securityManagement  - a object of SecurityManagement class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void manageEmployee(SecurityManagement& securityManagement, vector<Employee>& databaseEmployee){
     system("cls");
     int i, j;
@@ -313,6 +359,14 @@ void manageEmployee(SecurityManagement& securityManagement, vector<Employee>& da
     }
 }
 
+/*
+* Function: manageService
+* Description: This function performs the management of service in the hotel. 
+* Input:
+*   service  - a object of Service class
+* Output:
+*   None
+*/
 void manageService(Service& service){
     system("cls");
     int i, key1;
@@ -373,6 +427,16 @@ void manageService(Service& service){
     }
 }
 
+/*
+* Function: managePayment
+* Description: This function performs the management of payment in the hotel, include: payment and history payment. 
+* Input:
+*   databaseRoom - a vector room class
+*   databaseCustomer - a vector customer class
+*   databasePayHistory - a vector pay history class
+* Output:
+*   None
+*/
 void managePayment(vector<Room>& databaseRoom, vector<Customer>& dataCustomer, vector<PayHistory>& databasePayHistory){
     system("cls");
     int i, key1, idRoom;
@@ -421,6 +485,15 @@ void managePayment(vector<Room>& databaseRoom, vector<Customer>& dataCustomer, v
     }
 }
 
+/*
+* Function: statisticHotel
+* Description: This function statistic data in hotel. 
+* Input:
+*   databaseRoom - a vector room class
+*   databasePayHistory - a vector pay history class
+* Output:
+*   None
+*/
 void statisticHotel(vector<Room> databaseRoom, vector<PayHistory> databasePayHistory){
     system("cls");
     int sumPayment = 0, numberOfRoomIsBooked = 0, numberOfBooking = 0, key;
@@ -454,6 +527,15 @@ void statisticHotel(vector<Room> databaseRoom, vector<PayHistory> databasePayHis
     }
 }
 
+/*
+* Function: securityManage
+* Description: This function handles the security and access control management in the hotel.
+* Input:
+*   securityManagement - a object security management class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void securityManage(SecurityManagement& securityManagement, vector<Employee> databaseEmployee){
     system("cls");
     int i;
@@ -488,6 +570,14 @@ void securityManage(SecurityManagement& securityManagement, vector<Employee> dat
     }
 }
 
+/*
+* Function: manageFeedback
+* Description: This function manages feedback of hotel.
+* Input:
+*   databaseFeedback - a vector feedback class
+* Output:
+*   None
+*/
 void manageFeedback(vector<Feedback>& databaseFeedback){
     int key, key1;
     system("cls");

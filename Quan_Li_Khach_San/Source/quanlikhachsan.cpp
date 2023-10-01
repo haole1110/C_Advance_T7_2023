@@ -1,3 +1,10 @@
+/*
+* File: quanlikhachsan.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which implements the methods of the classes in the program.
+*/
+
 #include "quanlikhachsan.h"
 
 Room::Room(int number){

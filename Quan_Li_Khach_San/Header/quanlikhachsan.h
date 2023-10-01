@@ -12,6 +12,8 @@ using namespace std;
 
 
 //---------------------------------ENUM------------------------------------
+
+//Main funcitons in the system
 typedef enum{
     EXIT                    = 0,
     BOOK_ROOM               = 1,
@@ -29,6 +31,8 @@ typedef enum{
     OUT
 }typeStatus;
 
+
+//Job position of employee in hotel
 typedef enum{
     JANITOR,
     RECEPTIONIST,

@@ -1,5 +1,22 @@
+/*
+* File: manage_customer_function.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which include functions support the implementation of customer management functions.
+*/
+
+
 #include "manage_customer_function.h"
 
+/*
+* Function: editInfoCustomer
+* Description: This function performs the functionality of modifying customer information.
+* Input:
+*   databaseRoom - a vector room class
+*   databaseCustomer - a vector customer class
+* Output:
+*   None
+*/
 void editInfoCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
     system("cls");
     int stt;
@@ -63,6 +80,15 @@ void editInfoCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCust
 
 }
 
+/*
+* Function: deleteInfoCustomer
+* Description: This function performs the functionality of deleting customer information.
+* Input:
+*   databaseRoom - a vector room class
+*   databaseCustomer - a vector customer class
+* Output:
+*   None
+*/
 void deleteInfoCustomer(vector<Room>& databaseRoom, vector<Customer>& databaseCustomer){
 
     system("cls");

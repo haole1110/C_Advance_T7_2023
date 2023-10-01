@@ -1,5 +1,21 @@
+/*
+* File: manage_employee_function.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which include functions support the implementation of employee management functions.
+*/
+
 #include "manage_employee_function.h"
 
+
+/*
+* Function: updateAEmployee
+* Description: This function performs the functionality of modifying employee information.
+* Input:
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void updateAEmployee(vector<Employee>& databaseEmployee){
     system("cls");
     int i, columnWidth = 20, id, key, key1;
@@ -134,6 +150,14 @@ void updateAEmployee(vector<Employee>& databaseEmployee){
     }
 }
 
+/*
+* Function: deleteAEmployee
+* Description: This function performs the functionality of deleting employee information.
+* Input:
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void deleteAEmployee(vector<Employee>& databaseEmployee){
     system("cls");
     int id, i;
@@ -221,6 +245,14 @@ void deleteAEmployee(vector<Employee>& databaseEmployee){
     }
 }
 
+/*
+* Function: addAEmployee
+* Description: This function performs the functionality of adding employee information.
+* Input:
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void addAEmployee(vector<Employee>& databaseEmployee){
     system("cls");
     cout << "----------------Them nhan vien---------------------\n\n";
@@ -281,6 +313,14 @@ void addAEmployee(vector<Employee>& databaseEmployee){
     return;
 }
 
+/*
+* Function: printListEmployee
+* Description: This function performs the functionality of printing list employee information.
+* Input:
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void printListEmployee(vector<Employee> databaseEmployee){
     system("cls");
     int i;
@@ -310,6 +350,14 @@ void printListEmployee(vector<Employee> databaseEmployee){
     return;
 }
 
+/*
+* Function: manageEmployeeManagerPermission
+* Description: This function performs the functionality of managing employee information by manager permission.
+* Input:
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void manageEmployeeManagerPermission(vector<Employee>& databaseEmployee){
     system("cls");
     int i;
@@ -356,6 +404,15 @@ void manageEmployeeManagerPermission(vector<Employee>& databaseEmployee){
     }
 }
 
+/*
+* Function: manageEmployeeUserPermission
+* Description: This function performs the functionality of managing employee information by employee permission.
+* Input:
+*   databaseEmployee - a vector employee class
+*   stt - an integer number
+* Output:
+*   None
+*/
 void manageEmployeeUserPermission(vector<Employee>& databaseEmployee, int stt){
     int key, key1;
     string temp;

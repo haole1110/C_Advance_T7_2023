@@ -1,5 +1,23 @@
+/*
+* File: manage_security_function.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which include functions support the implementation of sercurity management functions.
+*/
+
 #include "manage_security_function.h"
 
+
+/*
+* Function: addAUser
+* Description: This function performs the functionality of adding a user (account and password) for 
+*              a employee by number count (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void addAUser(SecurityManagement& securityManagement, vector<Employee> databaseEmployee){
     system("cls");
     int i, id;
@@ -61,6 +79,15 @@ void addAUser(SecurityManagement& securityManagement, vector<Employee> databaseE
 
 }
 
+/*
+* Function: changePasswordAUser
+* Description: This function performs the functionality of changing password a user for 
+*              a employee by account (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+* Output:
+*   None
+*/
 void changePasswordAUser(SecurityManagement& securityManagement){
     system("cls");
     int i;
@@ -107,6 +134,15 @@ void changePasswordAUser(SecurityManagement& securityManagement){
     }
 }
 
+/*
+* Function: deleteAUser
+* Description: This function performs the functionality of deleting a user (account and password) for 
+*              a employee by account (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+* Output:
+*   None
+*/
 void deleteAUser(SecurityManagement& securityManagement){
     system("cls");
     int i;
@@ -186,6 +222,15 @@ void deleteAUser(SecurityManagement& securityManagement){
     }
 }
 
+/*
+* Function: printListUser
+* Description: This function performs the functionality of printing list users (account and password) for 
+*              (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+* Output:
+*   None
+*/
 void printListUser(SecurityManagement& securityManagement){
     system("cls");
     int i;
@@ -211,6 +256,16 @@ void printListUser(SecurityManagement& securityManagement){
     return;
 }
 
+/*
+* Function: editUserManagerPermission
+* Description: This function helps manager choose operation modify for employees
+*              (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void editUserManagerPermission(SecurityManagement& securityManagement, vector<Employee> databaseEmployee){
     continueEditUser:
     system("cls");
@@ -258,6 +313,15 @@ void editUserManagerPermission(SecurityManagement& securityManagement, vector<Em
     }
 }
 
+/*
+* Function: changePasswordManager
+* Description: This function performs the functionality of changing password manager account
+*              (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+* Output:
+*   None
+*/
 void changePasswordManager(SecurityManagement& securityManagement){
     system("cls");
     int key;
@@ -283,6 +347,16 @@ void changePasswordManager(SecurityManagement& securityManagement){
     }
 }
 
+/*
+* Function: managerPermission
+* Description: This function helps manager choose operation in the manager sercurity function
+*              (only manager account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void managerPermission(SecurityManagement& securityManagement, vector<Employee> databaseEmployee){
     int key;
     system("cls");
@@ -331,6 +405,16 @@ void managerPermission(SecurityManagement& securityManagement, vector<Employee> 
     }
 }
 
+/*
+* Function: userPermission
+* Description: This function helps user choose operation in the user sercurity function
+*              (only user account just can use this function).
+* Input:
+*   securityManagement - a object security management class
+*   databaseEmployee - a vector employee class
+* Output:
+*   None
+*/
 void userPermission(SecurityManagement& securityManagement, vector<Employee> databaseEmployee){
     int key, key1, i, j, columnWidth = 20;
     bool flag = 0;

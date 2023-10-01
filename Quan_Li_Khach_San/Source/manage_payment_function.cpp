@@ -1,5 +1,25 @@
+/*
+* File: manage_payment_function.cpp
+* Author: Le Duy Hao
+* Date: 28/09/2023
+* Description: This is a file which include functions support the implementation of payment management functions.
+*/
+
+
 #include "manage_payment_function.h"
 
+
+/*
+* Function: payment
+* Description: This function performs the functionality of printing the payment invoice and checking out 
+*              a room that has been paid for.
+* Input:
+*   databaseRoom - a vector room class
+*   dataCustomer - a vector customer class
+*   databasePayHistory - a vector pay history class
+* Output:
+*   None
+*/
 void payment(vector<Room>& databaseRoom, vector<Customer>& dataCustomer, vector<PayHistory>& databasePayHistory){
     system("cls");
     int i, idRoom, columnWidth = 20, key, key1;
