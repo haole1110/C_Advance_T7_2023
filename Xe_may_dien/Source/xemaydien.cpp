@@ -1,82 +1,8 @@
-#include <iostream>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-#include <conio.h>
-#include <cstdlib>
-#include <ctime>
+#include "xemaydien.h"
 
-using namespace std;
+mutex mtx;
+condition_variable condVar;
 
-std::mutex mtx;
-std::condition_variable condVar;
-
-class Battery {
-private:
-    int temperature;     // Nhiệt độ pin
-    int capacity;        // Dung lượng pin
-    int maxCapacity;     // Dung lượng pin tối đa
-    int minCapacity;     // Dung lượng pin tối thiểu
-    bool fan;           // Quạt
-
-public:
-    // Constructor
-    Battery(int initialCapacity, int maxCap, int minCap, int temp, bool fanStatus) {
-        capacity = initialCapacity;
-        maxCapacity = maxCap;
-        minCapacity = minCap;
-        temperature = temp;
-        fan = fanStatus;
-    }
-
-    // Getter và Setter cho các thuộc tính
-    int getTemperature() const {
-        return temperature;
-    }
-
-    void setTemperature(int temp) {
-        temperature = temp;
-    }
-
-    int getCapacity() const {
-        return capacity;
-    }
-
-    void setCapacity(int cap) {
-        capacity = cap;
-    }
-
-    int getMaxCapacity() const {
-        return maxCapacity;
-    }
-
-    void setMaxCapacity(int maxCap) {
-        maxCapacity = maxCap;
-    }
-
-    int getMinCapacity() const {
-        return minCapacity;
-    }
-
-    void setMinCapacity(int minCap) {
-        minCapacity = minCap;
-    }
-
-    bool getFanStatus() const {
-        return fan;
-    }
-
-    void setFanStatus(bool speed) {
-        fan = speed;
-    }
-
-    int convertCapacityToPercentage(){
-        return int(capacity*100/maxCapacity);
-    }
-};
-
-
-Battery battery(0, 70, 0, 0, 0);
 
 string xiNhan = "-------";
 string quat = "-------";
@@ -90,8 +16,64 @@ bool stateInput = 0;
 
 int speedBike = 0;
 
+Battery battery(0, 70, 0, 0, 0);
 
 
+Battery::Battery(int initialCapacity, int maxCap, int minCap, int temp, bool fanStatus) {
+    capacity = initialCapacity;
+    maxCapacity = maxCap;
+    minCapacity = minCap;
+    temperature = temp;
+    fan = fanStatus;
+}
+
+// Getter và Setter cho các thuộc tính
+int Battery::getTemperature(){
+    return temperature;
+}
+
+void Battery::setTemperature(int temp) {
+    temperature = temp;
+}
+
+int Battery::getCapacity(){
+    return capacity;
+}
+
+void Battery::setCapacity(int cap) {
+    capacity = cap;
+}
+
+int Battery::getMaxCapacity(){
+    return maxCapacity;
+}
+
+void Battery::setMaxCapacity(int maxCap) {
+    maxCapacity = maxCap;
+}
+
+int Battery::getMinCapacity(){
+    return minCapacity;
+}
+
+void Battery::setMinCapacity(int minCap) {
+    minCapacity = minCap;
+}
+
+bool Battery::getFanStatus(){
+    return fan;
+}
+
+void Battery::setFanStatus(bool speed) {
+    fan = speed;
+}
+
+int Battery::convertCapacityToPercentage(){
+    return int(capacity*100/maxCapacity);
+}
+
+
+//--------------------------------------------FUNCTION---------------------------------
 void getInputFromKeyboard(){
     while (1){
         char ch = _getch();
@@ -247,25 +229,4 @@ void displayScreen(){
         cout << "-------------------------------------------\n";
         cout << "Trang thai xe: " << trangThaiXe << endl;
     }
-}
-
-int main() {
-    thread t1(getInputFromKeyboard);
-    thread t2(controlStateBike);
-    thread t3(controlTurnSignal);
-    thread t4(controlFan);
-    thread t5(controlSpeedBike);
-    thread t6(controlBattery);
-    thread t7(displayScreen);
-
-    t1.join();
-    t2.join();
-    t3.join();
-    t4.join();
-    t5.join();
-    t6.join();
-    t7.join();
-
-
-    return 0;
 }
