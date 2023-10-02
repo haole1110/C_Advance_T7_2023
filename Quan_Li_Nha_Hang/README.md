@@ -13,36 +13,13 @@ Project này hiện thực các chức năng quản lí dữ liệu của một 
   + Xóa món trên menu
   + In danh sách món trên memu
 
-  + Ví dụ chức năng quản lí:
-________________________ 
-MANAGER
-
-          ________________________
-          1: Set so ban
-          2: Them mon vao menu
-          3: Sua mon
-          4: Xoa mon
-          5: Danh sach mon
-          0: Quay lai
-
-          ________________________
-          Nhap lua chon:
-________________________
 - Chức năng cho nhân viên: tương tác với khách hàng ở các bàn
   + Thêm món cho bàn
   + Sửa món trên bàn
   + Xóa món trên bàn
   + In danh sách món trên bàn
   + Thanh toán
-  + Ví dụ chức năng nhân viên:
-________________________
-STAFF
 
-          ____Danh sach ban____
-  So ban       1    2    3    4    5    
-  Status       0    0    0    0    0    
-  Nhap so ban:
-________________________
 ## Tính năng chưa hiện thực được
 
 ## Cài đặt
